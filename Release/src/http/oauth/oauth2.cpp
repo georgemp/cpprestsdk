@@ -139,6 +139,10 @@ pplx::task<void> oauth2_config::_request_token(uri_builder& request_body_ub)
 	http_client_config config;
 	config.set_proxy(m_proxy);
 
+    if (m_allow_insecure_ssl) {
+        config.set_validate_certificates(false);
+    }
+
     http_client token_client(token_endpoint(), config);
 
     return token_client.request(request)
