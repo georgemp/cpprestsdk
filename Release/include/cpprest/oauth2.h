@@ -623,6 +623,10 @@ namespace http {
                 /// object.</param>
                 void set_proxy(const web_proxy& proxy) { m_proxy = proxy; }
 
+                void set_allow_insecure_ssl(bool allow) {m_allow_insecure_ssl = allow;}
+
+                bool allow_insecure_ssl() const {return m_allow_insecure_ssl;}
+
             private:
                 friend class web::http::client::http_client_config;
                 friend class web::http::oauth2::details::oauth2_handler;
@@ -672,6 +676,8 @@ namespace http {
                 oauth2_token m_token;
 
                 utility::nonce_generator m_state_generator;
+
+                bool m_allow_insecure_ssl{false};
             };
 
         } // namespace web::http::oauth2::experimental
